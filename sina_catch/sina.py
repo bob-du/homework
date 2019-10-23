@@ -53,7 +53,7 @@ def get_news():
                         t1 = int(time.time())
                 else:
                     # 超时并超过重试次数，程序结束跳出循环，并认为页面已经加载完毕！
-                    print("滚动条已经处于页面最下方！")
+                    #print("滚动条已经处于页面最下方！")
                     status = False
                     break
             # 获取新闻链接
