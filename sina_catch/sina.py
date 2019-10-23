@@ -3,6 +3,8 @@
 # @author : Du Qinghua
 # @time : 2019/10/22 19:46
 # @file : sina.py
+# 爬取新浪国际新闻链接
+
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 import time
@@ -101,7 +103,8 @@ def get_news():
         print("read txt Error! ")
 
     #差集，剔除重复url
-    url.difference(u)
+    url=url.difference(u)
+
 
     dateT = datetime.datetime.now().strftime("%Y%m%d")
     #当日文件路径
@@ -109,7 +112,8 @@ def get_news():
     try:
         #存入txt文件
         file_write_obj = open(file_path, 'w')
-        file_write_obj2 = open(file_path_sum, 'w')
+        #追加到备份文件
+        file_write_obj2 = open(file_path_sum, 'a')
         for var in url:
             file_write_obj.writelines(var)
             file_write_obj.write('\n')
@@ -126,6 +130,7 @@ if __name__ == '__main__':
     sucF=False
     #尝试次数
     count=0
+    #尝试次数小于五次且未爬取成功
     while(count<5 and sucF==False):
         try:
             get_news()
